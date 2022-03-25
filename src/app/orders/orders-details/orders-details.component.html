@@ -1,0 +1,146 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      Orders Details
+      <small>E-Commerce</small>
+    </h1>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="box">
+          <div class="box-body">
+            <div class="card-header p-10" style="border-radius: 15px 15px 0px 0px;">
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="row">
+                    <div class="mtb-10 col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                      <h5 style="text-transform: uppercase;">Customer Name</h5>
+                      <div style="text-transform: capitalize;font-size: 16.5px;font-weight: bold;white-space: pre-wrap;">
+                        {{userInfo.salutation}} {{userInfo.firstName}} {{userInfo.lastName}}</div>
+                    </div>
+                    <div class="mtb-10 col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                      <h5 style="text-transform: uppercase;">Customer Email</h5>
+                      <div style="text-transform: capitalize;font-size: 16.5px;font-weight: bold;white-space: nowrap;white-space: pre-wrap;">
+                        {{userInfo.email}}</div>
+                    </div>
+                    <div class="mtb-10 col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                      <h5 style="text-transform: uppercase;">Customer Mobile</h5>
+                      <div style="text-transform: capitalize;font-size: 16.5px;font-weight: bold;white-space: pre-wrap;">{{userInfo.mobile}}</div>
+                    </div>
+                    <div class="mtb-10 col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                      <h5 style="text-transform: uppercase;">Customer Date of Birth</h5>
+                      <div style="text-transform: capitalize;font-size: 16.5px;font-weight: bold;white-space: pre-wrap;">{{userInfo.dob | date: 'dd MMM yyyy'}}</div>
+                    </div>
+                    <div class="mtb-10 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <h5 style="text-transform: uppercase;">Shipping Address</h5>
+                      <div style="text-transform: capitalize;font-size: 16.5px;font-weight: bold;white-space: pre-wrap;">
+                        {{additionalInfo.companyName}}
+                        {{additionalInfo.street}} {{additionalInfo.city}}
+                        {{additionalInfo.state}} {{additionalInfo.postalCode}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="box">
+          <div class="box-body">
+            <div class="card-header p-10" style="border-radius: 15px 15px 0px 0px;">
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="row">
+                    <div class="mtb-10 col-xs-6 col-sm-6 col-md-2 col-lg-3">
+                      <h5 style="text-transform: uppercase;">Order Placed</h5>
+                      <div style="text-transform: capitalize;font-size: 16.5px;font-weight: bold;">
+                        {{createdAt | date : 'dd MMMM yyyy, hh:mm a'}}</div>
+                    </div>
+                    <div class="mtb-10 col-xs-6 col-sm-6 col-md-1 col-lg-1">
+                      <h5 style="text-transform: uppercase;">Total</h5>
+                      <div style="text-transform: capitalize;font-size: 16.5px;font-weight: bold;white-space: nowrap;">₹
+                        {{total | number : '1.2-2'}}</div>
+                    </div>
+                    <div class="mtb-10 col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                      <h5 style="text-transform: uppercase;">Shipping To</h5>
+                      <div style="text-transform: capitalize;font-size: 16.5px;font-weight: bold;">{{name}}</div>
+                    </div>
+                    <div class="mtb-10 col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                      <h5 style="text-transform: uppercase;">Status</h5>
+                      <div style="text-transform: capitalize;font-size: 16.5px;font-weight: bold;">
+                        <span *ngIf="status === 'DELIVERED'"> DELIVERED</span>
+                        <span *ngIf="status === 'WILL_NOT_DELIVER'">WILL NOT DELIVER</span>
+                        <span *ngIf="status === 'RETURNED'"> RETURNED</span>
+                        <span *ngIf="status === 'AWAITING_PROCESSING'">ORDER RECEIVED</span>
+                        <span *ngIf="status === 'PROCESSING'"> ORDER RECEIVED</span>
+                        <span *ngIf="status === 'SHIPPED'"> SHIPPED</span>
+                        <span *ngIf="status === 'READY_FOR_PICKUP'">READY FOR PICKUP</span>
+                        <span *ngIf="status === 'OUT_FOR_DELIVERY'">OUT FOR DELIVERY</span>
+                      </div>
+                    </div>
+                    <div class="mtb-10 col-xs-6 col-sm-6 col-md-3 col-lg-2"></div>
+                    <div class="mtb-10 col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                      <h5 style="text-transform: uppercase;">Order Id</h5>
+                      <div style="text-transform: capitalize;font-size: 16.5px;font-weight: bold;">{{orderId}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="padding: 4rem 0;">
+              <div class="col-lg-12 col-md-12">
+                <div class="row">
+                  <ng-container *ngFor="let product of products">
+                    <div class="col-lg-6 col-md-6">
+                      <div class="row mtb-10">
+                        <div class="col-lg-5">
+                          <a><img src="{{baseURL}}/retrieve/{{product.data.media[0].url}}"
+                              style="height: 350px;width: 100%;" alt="product-img"></a>
+                        </div>
+                        <div class="col-lg-7">
+                          <div>
+                            <h4 style="margin-bottom: unset;" class="pro-title"><span
+                                style="white-space: pre-wrap;">{{product.data.name}} X {{product.qty}}</span>
+                            </h4>
+                            <h3><span style="font-weight: 400;">₹{{product.data.price}}</span></h3>
+                          </div>
+                          <div style="margin-top: 2rem;">
+                            <div *ngFor="let item of product.taxes; let i = index">
+                              {{item.data.name}} tax : ₹ {{item.taxAmount | number : '1.2-2'}}
+                            </div>
+                          </div>  
+                          <div style="margin-top: 4rem;">
+                            <h4><span style="font-weight: 400;">Total Amount:
+                                ₹{{product.items.price * product.items.quantity}}</span></h4>
+                            <h4><span style="font-weight: 400;">Commission: ₹{{product.items.commissionAmount}}</span>
+                            </h4>
+                          </div>
+                          <div style="margin-top: 5rem;">
+                            <h4 class="pro-title" style="margin-bottom: unset;"><a>Seller</a></h4>
+                            <p><span class="price" style="color: brown;">{{product.brandName}}</span></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+</div>

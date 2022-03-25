@@ -1,0 +1,48 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      Tax
+    </h1>
+    <div class="create-box">
+      <button type="button" class="btn btn-primary" (click)="getData()"><i class="fa fa-refresh"></i></button> &nbsp;
+      <button [routerLink]="['/tax/activity/create']" type="button" class="btn btn-warning"><b>Create Tax</b></button>
+    </div>
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box">
+          <div class="box-body">
+            <table id="taxTable" class="table table-borderless table-striped table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Tax Name</th>
+                  <th>Percentage (%)</th>
+                  <th style="width: 120px">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of taxData; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.percentage }}%</td>
+                  <td>
+                    <button class="btn bg-blue" (click)="editTax(item._id)"><i
+                        class="fa fa-edit"></i></button>&nbsp;&nbsp;
+                    <button class="btn bg-red" (click)="deleteTax(item._id)"><i class="fa fa-trash"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+</div>

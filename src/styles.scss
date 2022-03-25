@@ -1,0 +1,233 @@
+@use "@material/chips/styles";
+
+@font-face {
+    font-family: lato;
+    src: url(assets/fonts/lato.ttf);
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'lato', 'arial', sans-serif;
+}
+
+.font-rubik{
+  font-family: Rubik !important;
+}
+
+.font-roboto{
+  font-family: Roboto !important;
+}
+
+.main-sidebar{
+    padding-top: unset !important;
+}
+.navbar-nav>.user-menu>.dropdown-menu>.user-footer {
+    background-color: #EDE8E3 !important;
+}
+
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background-color: #0e3570 !important;
+}
+
+.skin-blue .main-header .logo {
+    background-color: #0e3570 !important;
+}
+
+.skin-blue .sidebar-menu>li.header{
+    color: #b0bec5;
+    background: #0e3570;
+}
+
+.skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a, .skin-blue .sidebar-menu>li.menu-open>a {
+    color: rgba($color: #fff, $alpha: 0.6);
+    background: #15366c;
+}
+
+.skin-blue .sidebar-menu .treeview-menu>li>a {
+    color: #fff;
+}
+
+.skin-blue .sidebar-menu .treeview-menu>li>a:hover {
+  color: #fff;
+}
+
+.skin-blue .sidebar-menu>li>.treeview-menu {
+    margin: 0 1px;
+    background: #0e3570;
+}
+
+.skin-blue .main-header .navbar {
+    background-color: #EDE8E3;
+}
+
+.text-primary{
+    color: #0e3570 !important;
+}
+
+.text-dark{
+    color: #263238 !important;
+}
+
+.text-dark-light{
+    color: #455a64 !important; 
+}
+
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.btn-primary{
+    background: #3b609c !important;
+}
+
+.btn-warning{
+    background: #f77a49 !important;
+}
+
+.text-warning{
+    color:#f77a49 !important;
+}
+
+
+.create-box{
+    float: right;
+    position: absolute;
+    top: 15px;
+    right: 30px;
+}
+
+
+.sidebar-menu li>a {
+  color:#EDE8E3 !important;
+}
+
+
+
+// Toggle Button
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 25px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+// Toggle Button end
+
+
+// Tags input
+
+.bootstrap-tagsinput {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  display: inline-block;
+  padding: 4px 6px;
+  color: #555;
+  vertical-align: middle;
+  border-radius: 4px;
+  max-width: 100%;
+  line-height: 22px;
+  cursor: text;
+}
+.bootstrap-tagsinput input {
+  border: none;
+  box-shadow: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0 6px;
+  margin: 0;
+  width: auto;
+  max-width: inherit;
+}
+.bootstrap-tagsinput.form-control input::-moz-placeholder {
+  color: #777;
+  opacity: 1;
+}
+.bootstrap-tagsinput.form-control input:-ms-input-placeholder {
+  color: #777;
+}
+.bootstrap-tagsinput.form-control input::-webkit-input-placeholder {
+  color: #777;
+}
+.bootstrap-tagsinput input:focus {
+  border: none;
+  box-shadow: none;
+}
+.bootstrap-tagsinput .tag {
+  margin-right: 2px;
+  color: white;
+}
+.bootstrap-tagsinput .tag [data-role="remove"] {
+  margin-left: 8px;
+  cursor: pointer;
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:after {
+  content: "x";
+  padding: 0px 2px;
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:hover:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+// Tags Input End

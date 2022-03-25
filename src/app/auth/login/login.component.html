@@ -1,0 +1,38 @@
+<div class="login-box">
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+      <div class="login-logo">
+        <img src="assets/logo.png" width="30%">
+      </div>
+      <!-- /.login-logo -->
+      <div class="login-box-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+    
+        <form>
+          <div class="form-group has-feedback">
+            <input type="email" class="form-control" placeholder="Email" [ngModelOptions]="{standalone: true}" [(ngModel)]="email">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="Password" [ngModelOptions]="{standalone: true}" [(ngModel)]="password">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="submit" class="btn btn-primary btn-block btn-flat" (click)="login()">
+                <div *ngIf="!loader">
+                  <i class="fa fa-sign-out"></i> Sign In
+                </div>
+                <div *ngIf="loader">
+                  <i class="fa fa-refresh fa-spin"></i>
+                </div>
+              </button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- /.login-box-body -->
+</div>

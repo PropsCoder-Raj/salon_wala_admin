@@ -1,0 +1,30 @@
+<header class="main-header">
+  <!-- Header Navbar: style can be found in header.less -->
+  <nav class="navbar navbar-static-top">
+    <!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle text-dark hidden-lg hidden-xl hidden-md" data-toggle="push-menu" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li class="dropdown user user-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+            <span class="hidden-xs text-dark">{{name}}</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="user-footer" style="height: auto;">
+              <div class="pull-left">
+                <a href="#" class="btn btn-default btn-flat">Change Password</a>
+              </div>
+              <div class="pull-right">
+                <a (click)="authS.logout()" class="btn btn-danger btn-flat">Log out</a>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+</header>

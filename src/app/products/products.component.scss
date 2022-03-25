@@ -1,0 +1,18 @@
+img{
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 150px; /* Set a small width */
+}
+img:hover {
+    box-shadow: 0 0 2px 1px lightgray;
+}
+.box{
+    border: unset !important;
+    border-bottom-left-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+}
+
+table.dataTable thead tr {
+    background: rgba($color: lightgray, $alpha: 0.3)
+}

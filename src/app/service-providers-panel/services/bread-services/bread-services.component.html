@@ -1,0 +1,119 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            <i class="fa fa-arrow-circle-o-left text-blue" aria-hidden="true" [routerLink]="['/service-providers-panel/services']"></i>
+            <span *ngIf="servicesStatus === 1">Create Services</span>
+            <span *ngIf="servicesStatus === 2 && action === 'update'">Update Services</span>
+            <span *ngIf="servicesStatus === 2 && action === 'view'">View Products</span>
+        </h1>
+        <div class="create-box">
+            <button type="button" class="btn btn-warning btn-md">
+                <b *ngIf="servicesStatus === 1" (click)="createService()">Create Services</b>
+                <b *ngIf="servicesStatus === 2 && action === 'update'" (click)="editService()">Update Service</b>
+                <b *ngIf="servicesStatus === 2 && action === 'view'" [routerLink]="['/service-providers-panel/services']">close</b>
+            </button>
+        </div>
+    </section>
+
+    <ng-container *ngIf="servicesStatus === 1">
+        <section class="content">
+            <div class="container-fluid">
+                <h2 class="text-center display-4">Search</h2>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="form-outline">
+                            <input type="search" id="form1" class="form-control" placeholder="Search services"
+                                style="width: 100%;border-radius: 6px;" [(ngModel)]="searchText" />
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <ng-container
+                                        *ngFor="let item of servicesProductsList | slice:0:10 | filter: searchText">
+                                        <ng-container *ngIf="item.add === false">
+                                            <li class="list-group-item">{{item.data.name}} <span
+                                                    class="badge bg-blue rounded-pill" style="cursor: pointer;"
+                                                    (click)="item.add = !item.add; addTrueCount = addTrueCount + 1;">Add</span>
+                                            </li>
+                                        </ng-container>
+                                    </ng-container>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-body">
+                            <table id="servicesTable"
+                                class="table table-borderless table-striped table-hover align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Services Name</th>
+                                        <th>Time (in minutes)</th>
+                                        <th>Price</th>
+                                        <th style="width: 120px">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let item of servicesProductsList">
+                                        <tr *ngIf="item.add === true">
+                                            <td>{{item.data.name}}</td>
+                                            <td><input type="number" placeholder="Enter time in minutes"
+                                                    [(ngModel)]="item.time" [ngModelOptions]="{standalone: true}"
+                                                    class="form-control"></td>
+                                            <td><input type="number" placeholder="Enter price" [(ngModel)]="item.price"
+                                                    [ngModelOptions]="{standalone: true}" class="form-control"></td>
+                                            <td><span class="badge bg-danger rounded-pill" style="cursor: pointer;"
+                                                    (click)="item.add = !item.add; addTrueCount = addTrueCount - 1;">Remove</span>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </ng-container>
+
+    <ng-container *ngIf="servicesStatus === 2">
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input disabled type="text" placeholder="Service Name" [(ngModel)]="name"
+                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label">Time (in minutes)</label>
+                                <div class="col-sm-10">
+                                    <input [disabled]="viewStatus" type="number" placeholder="Time in minutes" [(ngModel)]="time"
+                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label">Price</label>
+                                <div class="col-sm-10">
+                                    <input [disabled]="viewStatus" type="number" placeholder="Spa, hair spa" [(ngModel)]="price"
+                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </ng-container>
+</div>

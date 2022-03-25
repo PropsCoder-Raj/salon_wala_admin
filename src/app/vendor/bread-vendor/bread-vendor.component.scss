@@ -1,0 +1,27 @@
+.fa-arrow-circle-o-left {
+    cursor: pointer !important;
+    margin-right: 10px;
+  }
+  
+  .multiSelectContent {
+    height: 172px;
+    overflow: scroll;
+    border: solid 1px lightgray;
+    padding: 15px;
+    background: rgba($color: lightgray, $alpha: 0.1);
+  }
+  
+  .tab-pane{
+    padding: 20px 0;
+  }
+  
+  img{
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 100px; /* Set a small width */
+    height: 100px;
+  }
+  img:hover {
+    box-shadow: 0 0 2px 1px lightgray;
+  }

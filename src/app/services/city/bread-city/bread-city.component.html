@@ -1,0 +1,56 @@
+<div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        <i class="fa fa-arrow-circle-o-left text-blue" aria-hidden="true" (click)="back()"></i> &nbsp;
+        <span *ngIf="cityStatus === 1">Create City</span>
+        <span *ngIf="cityStatus === 2">Update City</span>
+      </h1>
+    </section>
+  
+    <section class="content">
+      <div class="row" *ngIf="cityStatus !== 0">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <b *ngIf="cityStatus === 1">Create City</b>
+                <b *ngIf="cityStatus === 2">Update City</b>
+              </h3>
+            </div>
+            <div class="panel-body">
+              <form class="form-horizontal">
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label">City Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" placeholder="City Name" class="form-control" [(ngModel)]="city_name" [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label">Thumbnail</label>
+                  <div class="col-sm-10">
+                    <input type="file" (change)="readURL($event);" accept="image/png, image/gif, image/jpeg" splaceholder="Thumbnail" id="Thumbnail" class="form-control">
+                    <div>
+                      <img id="blah" src="{{baseURL}}/retrieve/{{thumbnail}}" onerror="this.onerror=null;this.src=`http://placehold.it/180`;" width="100px" height="100px" alt="your image" />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="pull-right">
+                    <button class="btn bg-white" (click)="clearForm()">
+                      <b>Close</b>
+                    </button>&nbsp;&nbsp;
+                    <button class="btn btn-warning" *ngIf="cityStatus === 1" (click)="submit(false)">
+                      <b>Create City</b>
+                    </button> &nbsp;&nbsp;
+                    <button class="btn btn-warning" *ngIf="cityStatus === 2" (click)="submit(false)">
+                      <b>Update City</b>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>  

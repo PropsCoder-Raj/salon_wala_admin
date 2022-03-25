@@ -1,0 +1,49 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      Customers
+    </h1>
+    <div class="create-box">
+      <button type="button" (click)="getData()" class="btn btn-primary"><i class="fa fa-refresh"></i></button>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box">
+          <div class="box-body">
+            <table id="customersTable" class="table table-borderless table-striped table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th style="width: 30px">#</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Mobile</th>
+                  <th>Gender</th>
+                  <th style="width: 20px">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of data;let i = index;">
+                  <td>#{{i+1}}</td>
+                  <td>{{item.firstName}} {{item.lastName}}</td>
+                  <td>{{item.email}}</td>
+                  <td>{{item.mobile}}</td>
+                  <td>{{item.gender}}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary"  routerLink="/customer-details/{{item._id}}"> <i class="fa fa-eye"></i> </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+</div>

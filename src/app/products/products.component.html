@@ -1,0 +1,57 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      Products
+      <small>E-Commerce</small>
+    </h1>
+    <div class="create-box">
+      <button type="button" class="btn btn-primary" (click)="getData()"><i class="fa fa-refresh"></i></button>&nbsp;
+      <!-- <button [routerLink]="['/products/activity/create']" type="button" class="btn btn-warning btn-md"><b>Create
+          Product</b></button> -->
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box">
+          <div class="box-body">
+            <table id="productsTable" class="table table-borderless table-striped table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th style="width: 20px">#</th>
+                  <th>Product Name</th>
+                  <th>SKU</th>
+                  <th>Price</th>
+                  <th>Shipping Required</th>
+                  <th style="width: 120px">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of data;let i=index">
+                  <td>{{i+1}}</td>
+                  <td>{{data.name}}</td>
+                  <td>{{data.sku}}</td>
+                  <td>{{data.price}}</td>
+                  <td><span *ngIf="data.isShippingRequired == 1">Yes</span><span *ngIf="data.isShippingRequired == 0">No</span></td>
+                  <td>
+                    <button class="btn bg-blue" (click)="viewProduct(data._id)" ><i
+                        class="fa fa-eye"></i></button>&nbsp;&nbsp;
+                        <button class="btn btn-warning" (click)="editProduct(data._id)" ><i
+                            class="fa fa-pencil"></i></button>&nbsp;&nbsp;
+                    <!-- <button class="btn bg-red" (click)="deleteProduct(data._id)"><i class="fa fa-trash"></i></button> -->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+
+</div>

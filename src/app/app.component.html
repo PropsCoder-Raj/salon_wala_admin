@@ -1,0 +1,10 @@
+<div [ngClass]="{'hold-transition login-page' : !isLogin}">
+  <div [ngClass]="{'hold-transition skin-blue sidebar-mini' : isLogin}">
+    <div class="wrapper">
+      <app-app-header *ngIf="isLogin"></app-app-header>
+      <app-app-menu *ngIf="isLogin"></app-app-menu>
+      <router-outlet></router-outlet>
+      <app-app-footer *ngIf="isLogin"></app-app-footer>
+    </div>
+  </div>
+</div>

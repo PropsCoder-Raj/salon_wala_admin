@@ -1,0 +1,188 @@
+<div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Provider Dashboard
+      </h1>
+    </section>
+  
+    <!-- Main content -->
+    <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua-gradient">
+            <div class="inner">
+              <h3>{{totalBookings}}</h3>
+  
+              <p>Total Bookings</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green-gradient">
+            <div class="inner">
+              <h3>{{totalService}}</h3>
+  
+              <p>Total Service</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-yellow-gradient">
+            <div class="inner">
+              <h3>₹ {{wallet}}</h3>
+  
+              <p>Wallet</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-card"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red-gradient">
+            <div class="inner">
+              <h3>₹ {{totalCommission}}</h3>
+  
+              <p>Commission</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-android-globe"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+  
+      <!-- /.row -->
+  
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="box">
+            <div class="box-header">
+              <p>Details</p>
+            </div>
+            <div class="box-body">
+              <table class="table  table-borderless table-striped table-hover align-middle mb-0 table-condensed">
+                <tbody>
+                  <tr>
+                    <td>Name:</td>
+                    <td class="text-right">{{salutation}} {{name}}</td>
+                  </tr>
+                  <tr>
+                    <td>Email:</td>
+                    <td class="text-right">{{email}}</td>
+                  </tr>
+                  <tr>
+                    <td>Mobile:</td>
+                    <td class="text-right">+91 {{mobile}}</td>
+                  </tr>
+                  <tr>
+                    <td>Brand Name:</td>
+                    <td class="text-right">{{brandName}}</td>
+                  </tr>
+                  <tr>
+                    <td>Official Email:</td>
+                    <td class="text-right">{{officialEmail}}</td>
+                  </tr>
+                  <tr>
+                    <td>Official Mobile:</td>
+                    <td class="text-right">+91 {{officialMobile}}</td>
+                  </tr>
+                  <tr>
+                    <td>Shop Pincode:</td>
+                    <td class="text-right">{{shopPincode}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box-header">
+              <p>Wallet Transaction</p>
+            </div>
+            <div style="padding-bottom: 30px;" *ngIf="transactionCount === 0">
+              <h5 style="text-align: center;font-weight: bold;">No Transaction</h5>
+            </div>
+            <div class="box-body" *ngIf="transactionCount > 0">
+              <table class="table  table-borderless table-striped table-hover align-middle mb-0 table-condensed">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Amount (₹)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of transactionList">
+                    <th>{{item.createdAt | date : 'dd MMM yyyy, hh:mm a'}}</th>
+                    <th>{{item.message}}</th>
+                    <th class="text-center">
+                      <span *ngIf="item.transactionType === 'withdraw'" class="text-danger">-{{item.amount}}</span>
+                      <span *ngIf="item.transactionType === 'deposite'" class="text-success">+{{item.amount}}</span>
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="box">
+            <div class="box-header">
+              <p>Bookings Overview</p>
+            </div>
+            <div style="padding-bottom: 30px;" *ngIf="totalBookings === 0">
+              <h5 style="text-align: center;font-weight: bold;">No showing Bookings</h5>
+            </div>
+            <div class="box-body" *ngIf="totalBookings > 0">
+                <table id="bookingsTable" class="table table-borderless table-striped table-hover align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Booking Date</th>
+                      <th>Day</th>
+                      <th>Service</th>
+                      <th>Slot Timing</th>
+                      <th>Total Amount</th>
+                      <th>Commission</th>
+                      <th>User Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of bookingsList; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{item.data.bookingDate | date : 'dd MMMM yyyy'}}</td>
+                      <td>{{item.data.slot.day}}</td>
+                      <td>{{item.service.name}}</td>
+                      <td>{{item.data.slot.start}} - {{item.data.slot.end}}</td>
+                      <td>₹ {{item.service.price}}</td>
+                      <td>₹ {{item.service.commissionAmount}}</td>
+                      <td>{{item.user1.salutation}} {{item.user1.firstName}} {{item.user1.lastName}}</td>
+                      <td>
+                        <button type="button" class="btn btn-primary" (click)="viewBookings(item.data._id)"> <i class="fa fa-eye"></i> </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  
+  </div>
+  

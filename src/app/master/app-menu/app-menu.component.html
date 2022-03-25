@@ -1,0 +1,149 @@
+<aside class="main-sidebar">
+  <section class="sidebar">
+    <ul class="sidebar-menu" data-widget="tree" *ngIf="adminRoleS">
+      <li class="hidden-xl hidden-lg hidden-md" style="padding-top:50px;"></li>
+      <li class="">
+        <img src="assets/logo.png" width="80%" style="padding:20px;">
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/dashboard']">
+        <a href="#"><i class="fa fa-dashboard"></i> <span class="font-rubik">Dashboard</span></a></li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/customers']">
+        <a href="#">
+          <i class="fa fa-user-circle"></i> <span class="font-rubik">Customers</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/banners']">
+        <a href="#">
+          <i class="fa fa-television"></i> <span class="font-rubik">Banners</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/coupons']">
+        <a href="#">
+          <i class="fa fa-ticket"></i> <span class="font-rubik">Coupons</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/contacts']">
+        <a href="#">
+          <i class="fa fa-compress"></i> <span class="font-rubik">Contacts</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/tax']">
+        <a href="#">
+          <i class="fa fa-list-alt"></i> <span class="font-rubik">Tax</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/settings']">
+        <a href="#">
+          <i class="fa fa-cog"></i> <span>Settings</span>
+        </a>
+      </li>
+      <li class="header">E-COMMERCE</li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/categories']">
+        <a href="#">
+          <i class="fa fa-th"></i> <span class="font-rubik">Categories</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/products']">
+        <a href="#">
+          <i class="fa fa-product-hunt"></i> <span class="font-rubik">Products</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/vendor']">
+        <a href="#">
+          <i class="fa fa-user"></i> <span class="font-rubik">Vendor</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/payout']">
+        <a href="#">
+          <i class="fa fa-money"></i> <span class="font-rubik">Payouts</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/orders']">
+        <a href="#">
+          <i class="fa fa-file"></i> <span class="font-rubik">Orders</span>
+        </a>
+      </li>
+      <li class="header">SERVICES</li>
+      <!-- <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/services/categories']">
+        <a href="#">
+          <i class="fa fa-superpowers"></i> <span class="font-rubik">Categories</span>
+        </a>
+      </li> -->
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/services/products']">
+        <a href="#">
+          <i class="fa fa-snowflake-o"></i> <span class="font-rubik">Services</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/services/providers']">
+        <a href="#">
+          <i class="fa fa-street-view"></i> <span class="font-rubik">Providers</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/services/payouts']">
+        <a href="#">
+          <i class="fa fa-money"></i> <span class="font-rubik">Payouts</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/services/orders']">
+        <a href="#">
+          <i class="fa fa-chain-broken"></i> <span class="font-rubik">Bookings</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/services/city']">
+        <a href="#">
+          <i class="fa fa-map-marker"></i> <span class="font-rubik">City Master</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="sidebar-menu" data-widget="tree" *ngIf="vendorRoleS">
+      <li class="hidden-xl hidden-lg hidden-md" style="padding-top:50px;"></li>
+      <li class="">
+        <img src="assets/logo.png" width="80%" style="padding:20px;">
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/vendor-panel/dashboard']">
+        <a href="#"><i class="fa fa-dashboard"></i> <span class="font-rubik">Dashboard</span></a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/vendor-panel/products']">
+        <a href="#">
+          <i class="fa fa-product-hunt"></i> <span class="font-rubik">Products</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/vendor-panel/orders']">
+        <a href="#">
+          <i class="fa fa-file"></i> <span class="font-rubik">Orders</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/vendor-panel/transaction']">
+        <a href="#">
+          <i class="fa fa-exchange"></i> <span class="font-rubik">Transaction</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="sidebar-menu" data-widget="tree" *ngIf="serviceProvidersS">
+      <li class="hidden-xl hidden-lg hidden-md" style="padding-top:50px;"></li>
+      <li class="">
+        <img src="assets/logo.png" width="80%" style="padding:20px;">
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/service-providers-panel/dashboard']">
+        <a href="#"><i class="fa fa-dashboard"></i> <span class="font-rubik">Dashboard</span></a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/service-providers-panel/services']">
+        <a href="#">
+          <i class="fa fa-th-large" aria-hidden="true"></i><span class="font-rubik">Services</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/service-providers-panel/bookings']">
+        <a href="#">
+          <i class="fa fa-chain-broken"></i> <span class="font-rubik">Bookings</span>
+        </a>
+      </li>
+      <li class="treeview" [routerLinkActive]="['active']" [routerLink]="['/service-providers-panel/transaction']">
+        <a href="#">
+          <i class="fa fa-exchange"></i> <span class="font-rubik">Transaction</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</aside>

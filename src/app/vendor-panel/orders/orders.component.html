@@ -1,0 +1,66 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      Orders
+      <small>E-Commerce</small>
+    </h1>
+    <div class="create-box">
+      <button type="button" class="btn btn-primary" (click)="getOrders()"><i class="fa fa-refresh"></i></button>&nbsp;
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box">
+          <div class="box-body">
+            <table class="table table-borderless table-striped table-hover align-middle mb-0 table-condensed" id="ordersTable" #ordersTable>
+              <thead>
+                <tr>
+                  <th>SR</th>
+                  <th>Order Id</th>
+                  <th>Products</th>
+                  <th>Amount</th>
+                  <th>Commission</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let item of ordersList; let i = index">
+                  <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{item.orderId}}</td>
+                    <td>{{item.data.name}} * {{item.data.quantity}}</td>
+                    <td>₹ {{item.data.price * item.data.quantity}}</td>
+                    <td>₹ {{item.data.commissionAmount}}</td>
+                    <td>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'DELIVERED'"> DELIVERED</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'WILL_NOT_DELIVER'">WILL NOT
+                        DELIVER</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'RETURNED'"> RETURNED</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'AWAITING_PROCESSING'">ORDER
+                        RECEIVED</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'PROCESSING'"> ORDER RECEIVED</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'SHIPPED'"> SHIPPED</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'READY_FOR_PICKUP'">READY FOR
+                        PICKUP</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'OUT_FOR_DELIVERY'">OUT FOR
+                        DELIVERY</span>
+                    </td>
+                    <td>
+                      <button class="btn bg-blue" (click)="viewOrder(item._id)"><i class="fa fa-eye"></i></button>
+                    </td>  
+                  </tr>
+                </ng-container>  
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+</div>

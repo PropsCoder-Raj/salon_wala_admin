@@ -1,0 +1,49 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      Categories
+      <small>E-Commerce</small>
+    </h1>
+    <div class="create-box">
+      <button type="button" class="btn btn-primary" (click)="getData()"><i class="fa fa-refresh"></i></button> &nbsp;
+      <button [routerLink]="['/categories/activity/create']" type="button" class="btn btn-warning"><b>Create Category</b></button>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-solid ">
+          <div class="box-body">
+            <div class="table-responsive">
+              <table id="categoriesTable" class="table table-borderless table-striped table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th style="width: 20px">#</th>
+                    <th class="text-center">Thumbnail</th>
+                    <th>Category Name</th>
+                    <th style="width: 20px">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of categoriesData; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td class="text-center">
+                      <a href="{{baseURL}}/retrieve/{{item.thumbnail}}" target="_blank">
+                        <img src="{{baseURL}}/retrieve/{{item.thumbnail}}" onerror="this.onerror=null;this.src='assets/dist/img/image_no.png';" width="50px" height="50px" alt="">
+                      </a>  
+                    </td>
+                    <td>{{ item.categoryName }}</td>
+                    <td>
+                      <button class="btn btn-primary" (click)="editcategory(item._id)"><i class="fa fa-edit"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+  </section>
+</div>  

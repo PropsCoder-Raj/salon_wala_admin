@@ -1,0 +1,230 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      Vendor Dashboard
+    </h1>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua-gradient">
+          <div class="inner">
+            <h3>{{totalOrders}}</h3>
+
+            <p>Total Orders</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-bag"></i>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-green-gradient">
+          <div class="inner">
+            <h3>₹ {{totalSales | number : '1.2-2'}}</h3>
+
+            <p>Total Sales</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-ios-cart"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-xs-6">
+        <div class="small-box bg-yellow-gradient">
+          <div class="inner">
+            <h3>₹ {{wallet}}</h3>
+
+            <p>Wallet</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-card"></i>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red-gradient">
+          <div class="inner">
+            <h3>₹ {{totalCommission}}</h3>
+
+            <p>Commission</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-android-globe"></i>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+    </div>
+
+    <!-- /.row -->
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="box">
+          <div class="box-header">
+            <p>Details</p>
+          </div>
+          <div class="box-body">
+            <table class="table  table-borderless table-striped table-hover align-middle mb-0 table-condensed">
+              <tbody>
+                <tr>
+                  <td>Name:</td>
+                  <td class="text-right">{{salutation}} {{name}}</td>
+                </tr>
+                <tr>
+                  <td>Email:</td>
+                  <td class="text-right">{{email}}</td>
+                </tr>
+                <tr>
+                  <td>Mobile:</td>
+                  <td class="text-right">+91 {{mobile}}</td>
+                </tr>
+                <tr>
+                  <td>Brand Name:</td>
+                  <td class="text-right">{{brandName}}</td>
+                </tr>
+                <tr>
+                  <td>Official Email:</td>
+                  <td class="text-right">{{officialEmail}}</td>
+                </tr>
+                <tr>
+                  <td>Official Mobile:</td>
+                  <td class="text-right">+91 {{officialMobile}}</td>
+                </tr>
+                <tr>
+                  <td>Shop Pincode:</td>
+                  <td class="text-right">{{shopPincode}}</td>
+                </tr>
+                <tr>
+                  <td>Pickup Pincode:</td>
+                  <td class="text-right">{{pickupPincode}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-header">
+            <p>Pending Orders</p>
+          </div>
+          <div style="padding-bottom: 30px;" *ngIf="totalPendingOrders === 0">
+            <h5 style="text-align: center;font-weight: bold;">No showing Orders</h5>
+          </div>
+          <div class="box-body" *ngIf="totalPendingOrders > 0">
+            <table class="table table-borderless table-striped table-hover align-middle mb-0 table-condensed">
+              <thead>
+                <tr>
+                  <th>SR</th>
+                  <th>Order Id</th>
+                  <th>Product</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let item of ordersPendingList; let i = index" >
+                    <tr>
+                      <td>{{ i + 1 }}</td>
+                      <td>{{item.orderId}}</td>
+                      <td>{{item.data.name}} * {{item.data.quantity}}</td>
+                      <td><button class="btn btn-large btn-link" (click)="viewOrder(item._id)"><i class="ion ion-link"></i></button></td>
+                  </tr>
+                </ng-container>  
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-header">
+            <p>Wallet Transaction</p>
+          </div>
+          <div style="padding-bottom: 30px;" *ngIf="transactionCount === 0">
+            <h5 style="text-align: center;font-weight: bold;">No Transaction</h5>
+          </div>
+          <div class="box-body" *ngIf="transactionCount > 0">
+            <table class="table  table-borderless table-striped table-hover align-middle mb-0 table-condensed">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Amount (₹)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of transactionList">
+                  <th>{{item.createdAt | date : 'dd MMM yyyy, hh:mm a'}}</th>
+                  <th>{{item.message}}</th>
+                  <th class="text-center">
+                    <span *ngIf="item.transactionType === 'withdraw'" class="text-danger">-{{item.amount}}</span>
+                    <span *ngIf="item.transactionType === 'deposite'" class="text-success">+{{item.amount}}</span>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="box">
+          <div class="box-header">
+            <p>Orders Overview</p>
+          </div>
+          <div style="padding-bottom: 30px;" *ngIf="totalDeliveryOrders === 0">
+            <h5 style="text-align: center;font-weight: bold;">No showing Orders</h5>
+          </div>
+          <div class="box-body" *ngIf="totalDeliveryOrders > 0">
+            <table class="table  table-borderless table-striped table-hover align-middle mb-0 table-condensed">
+              <thead>
+                <tr>
+                  <th>SR</th>
+                  <th>Order Id</th>
+                  <th>Products</th>
+                  <th>Amount</th>
+                  <th>Commission</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let item of ordersList; let i = index">
+                  <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{item.orderId}}</td>
+                    <td>{{item.data.name}} * {{item.data.quantity}}</td>
+                    <td>₹ {{item.data.price * item.data.quantity}}</td>
+                    <td>₹ {{item.data.commissionAmount}}</td>
+                    <td>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'DELIVERED'"> DELIVERED</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'WILL_NOT_DELIVER'">WILL NOT
+                        DELIVER</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'RETURNED'"> RETURNED</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'AWAITING_PROCESSING'">ORDER
+                        RECEIVED</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'PROCESSING'"> ORDER RECEIVED</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'SHIPPED'"> SHIPPED</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'READY_FOR_PICKUP'">READY FOR
+                        PICKUP</span>
+                      <span style="font-size:small" *ngIf="item.fulfillmentStatus === 'OUT_FOR_DELIVERY'">OUT FOR
+                        DELIVERY</span>
+                    </td>
+                    <td><button class="btn btn-large btn-link" (click)="viewOrder(item._id)"><i class="ion ion-link"></i></button></td>
+                  </tr>
+                </ng-container>  
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+
+</div>

@@ -1,0 +1,69 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      Payouts
+      <small>E-Commerce</small>
+    </h1>
+    <div class="create-box">
+      <button type="button" (click)="getData()" class="btn btn-primary"><i class="fa fa-refresh"></i></button> &nbsp;
+      <button type="button" class="btn btn-warning" (click)="exportAsXLSX()"><i class="fa fa-download"></i> Export CSV</button>&nbsp;
+      <button type="button" class="btn btn-warning" (click)="markAsComplete()">Mark as PayOuts Complete <i class="fa fa-circle-o-notch fa-spin" *ngIf="loader" aria-hidden="true"></i></button>&nbsp;
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua-gradient">
+          <div class="inner">
+            <h3>{{totalPayouts}}</h3>
+
+            <p>Total Payout</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-card"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box">
+          <div class="box-body">
+            <table id="vendorsTable" class="table  table-borderless table-striped table-hover align-middle mb-0 table-condensed">
+              <thead>
+              <tr>
+                <th style="width: 30px">#</th>
+                <th>Name</th>
+                <th>Shop Name</th>
+                <th>Bank Name</th>
+                <th>Bank IFSC</th>
+                <th>Account Number</th>
+                <th>Account Type</th>
+                <th>Wallet</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of data;let i = index;">
+                <td>{{i+1}}</td>
+                <td>{{item.data.salutation}} {{item.data.firstName}} {{item.data.lastName}}</td>
+                <td>{{item.data.shopName}}</td>
+                <td>{{item.bank.bankName}}</td>
+                <td>{{item.bank.bankIFSC}}</td>
+                <td>{{item.bank.accountNo}}</td>
+                <td>{{item.bank.accountType}}</td>
+                <td>{{item.data.wallet}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+</div>

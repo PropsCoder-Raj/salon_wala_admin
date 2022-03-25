@@ -1,0 +1,52 @@
+<div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Bookings
+        <small>E-Commerce</small>
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+  
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-body">
+              <table id="bookingsTable" class="table table-borderless table-striped table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Booking Date</th>
+                    <th>Day</th>
+                    <th>Service</th>
+                    <th>Slot Timing</th>
+                    <th>Total Amount</th>
+                    <th>Commission</th>
+                    <th>User Name</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of bookingsList; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{item.data.bookingDate | date : 'dd MMMM yyyy'}}</td>
+                    <td>{{item.data.slot.day}}</td>
+                    <td>{{item.service.name}}</td>
+                    <td>{{item.data.slot.start}} - {{item.data.slot.end}}</td>
+                    <td>₹ {{item.service.price}}</td>
+                    <td>₹ {{item.service.commissionAmount}}</td>
+                    <td>{{item.user1.salutation}} {{item.user1.firstName}} {{item.user1.lastName}}</td>
+                    <td>
+                      <button type="button" class="btn btn-primary" (click)="viewBookings(item.data._id)"> <i class="fa fa-eye"></i> </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </section>
+    <!-- /.content -->
+  </div>

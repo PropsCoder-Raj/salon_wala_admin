@@ -1,0 +1,86 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      <i class="fa fa-arrow-circle-o-left text-blue" aria-hidden="true" [routerLink]="['/customers']"></i>
+      Customer Details
+    </h1>
+  </section>
+
+  <!-- Main content -->
+  <section class="invoice">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-sm-4 col-xs-6">
+            <div class="description-block border-right">
+              <span class="description-text">Name</span>
+              <h5 class="description-header">{{data.salutation}} {{data.firstName}} {{data.lastName}}</h5>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4 col-xs-6">
+            <div class="description-block border-right">
+              <span class="description-text">Email</span>
+              <h5 class="description-header">{{data.email}}</h5>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4 col-xs-6">
+            <div class="description-block border-right">
+              <span class="description-text">Mobile</span>
+              <h5 class="description-header">{{data.mobile}}</h5>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">Details</h3>
+          </div>
+          <div class="box-body">
+            <div class="row" style="margin: 30px 0;">
+              <div class="text-center" *ngIf="ordersCount === 0">
+                <b>No Orders</b>
+              </div>
+              <div class="col-xs-12 table-responsive" *ngIf="ordersCount !== 0">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Order Id</th>
+                      <th>Additional Message</th>
+                      <th>Date</th>
+                      <th>Total Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of orders; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{item.orderId}}</td>
+                      <td>{{item.orderComments}}</td>
+                      <td>{{item.createdAt | date: "dd MMM yyyy, hh:mm a"}}</td>
+                      <td>₹.{{item.total}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.col -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>

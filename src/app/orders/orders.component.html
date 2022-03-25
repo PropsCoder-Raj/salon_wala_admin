@@ -1,0 +1,52 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      Orders
+      <small>E-Commerce</small>
+    </h1>
+    <div class="create-box">
+      <button type="button" class="btn btn-primary" (click)="getUserOrders()"><i
+          class="fa fa-refresh"></i></button>&nbsp;
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box">
+          <div class="box-body">
+            <table id="ordersTable" class="table table-borderless table-striped table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Order Id</th>
+                  <th>Name</th>
+                  <th>Products</th>
+                  <th>Date</th>
+                  <th>Total Amount</th>
+                  <th>Commission</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of orders; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{item.orderData.orderId}}</td>
+                  <td>{{item.orderData.additionalInfo.name}}</td>
+                  <td>{{item.orderData.orderComments}}</td>
+                  <td>{{item.orderData.createdAt | date: "dd MMM yyyy, hh:mm a"}}</td>
+                  <td>₹ {{item.totalAmount}}</td>
+                  <td>₹ {{item.commissionAmount}}</td>
+                  <button type="button" class="btn btn-primary" (click)="viewOrder(item.orderData._id)"> <i class="fa fa-eye"></i> </button>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+</div>

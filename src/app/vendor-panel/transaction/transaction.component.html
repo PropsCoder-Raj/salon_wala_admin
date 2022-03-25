@@ -1,0 +1,50 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Transactions
+            <small>E-Commerce</small>
+        </h1>
+        <div class="create-box">
+            <button type="button" class="btn btn-primary" (click)="getTransaction()"><i
+                    class="fa fa-refresh"></i></button>&nbsp;
+        </div>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-body">
+                        <table
+                            class="table table-borderless table-striped table-hover align-middle mb-0 table-condensed" id="transactionTable">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th class="text-center">Amount (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of transactionList;let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{item.createdAt | date : 'dd MMM yyyy, hh:mm a'}}</td>
+                                    <td>{{item.message}}</td>
+                                    <td class="text-center">
+                                        <span *ngIf="item.transactionType === 'withdraw'"
+                                            class="text-danger">-{{item.amount}}</span>
+                                        <span *ngIf="item.transactionType === 'deposite'"
+                                            class="text-success">+{{item.amount}}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- /.content -->
+</div>

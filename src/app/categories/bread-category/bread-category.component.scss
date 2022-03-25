@@ -1,0 +1,23 @@
+.fa-arrow-circle-o-left{
+    cursor: pointer !important;
+    margin-right: 10px;
+}
+
+img{
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 100px; /* Set a small width */
+    height: 100px;
+}
+img:hover {
+    box-shadow: 0 0 2px 1px lightgray;
+}
+.list{
+    background-color: #ff851b;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+}

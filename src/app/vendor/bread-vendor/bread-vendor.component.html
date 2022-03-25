@@ -1,0 +1,212 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      <i class="fa fa-arrow-circle-o-left text-blue" aria-hidden="true" [routerLink]="['/vendor']"></i>
+      <span *ngIf="action === 1">Create Vendor</span>
+      <span *ngIf="action === 2">Update Vendor</span>
+    </h1>
+    <div class="create-box">
+      <button type="button" class="btn btn-warning btn-md">
+        <b *ngIf="action === 1" (click)="createVendor()">Create Vendor</b>
+        <b *ngIf="action === 2" (click)="editVendor()">Update Vendor</b>
+      </button>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Vendor Information</h3>
+          </div>
+          <div class="panel-body">
+            <form id="form-product" class="form-horizontal">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab-general" data-toggle="tab">Personal</a></li>
+                <li><a href="#tab-data" data-toggle="tab">Brand</a></li>
+                <li><a href="#tab-media" data-toggle="tab">Auth</a></li>
+                <li><a href="#tab-commission" data-toggle="tab">Commission</a></li>
+                <li><a href="#tab-bank" data-toggle="tab">Bank Details</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="tab-general">
+                  <div class="tab-content">
+                    <div>
+                      <div class="form-group required {{salutationError}}">
+                        <label class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-2">
+                          <select class="form-control" [(ngModel)]="salutation" [ngModelOptions]="{standalone: true}">
+                            <option value="">Select Salutation</option>
+                            <option value="Mr.">Mr.</option>
+                            <option value="Mrs.">Mrs.</option>
+                            <option value="Ms.">Ms.</option>
+                          </select>
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" placeholder="First Name" [(ngModel)]="firstName"
+                            [ngModelOptions]="{standalone: true}" class="form-control">
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" placeholder="Last Name" [(ngModel)]="lastName"
+                            [ngModelOptions]="{standalone: true}" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group required">
+                        <label class="col-sm-2 control-label">Mobile</label>
+                        <div class="col-sm-10">
+                          <input type="number" placeholder="Personal Mobile" [(ngModel)]="mobile"
+                            [ngModelOptions]="{standalone: true}" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group required">
+                        <label class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                          <input type="email" placeholder="Personal Email" [(ngModel)]="email"
+                            [ngModelOptions]="{standalone: true}" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group required">
+                        <label class="col-sm-2 control-label">Gender</label>
+                        <div class="col-sm-10">
+                          <label><input type="radio" value="Male" name="gender" [(ngModel)]="gender"
+                              [ngModelOptions]="{standalone: true}"> Male</label>&nbsp;
+                          <label><input type="radio" value="Female" name="gender" [(ngModel)]="gender"
+                              [ngModelOptions]="{standalone: true}"> Female</label>
+                        </div>
+                      </div>
+                      <div class="form-group required">
+                        <label class="col-sm-2 control-label">Date of Birth</label>
+                        <div class="col-sm-10">
+                          <input type="date" [(ngModel)]="dob" [ngModelOptions]="{standalone: true}"
+                            class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group required">
+                        <label class="col-sm-2 control-label">Address</label>
+                        <div class="col-sm-10">
+                          <textarea type="text" placeholder="Enter Address" [(ngModel)]="address"
+                            [ngModelOptions]="{standalone: true}" rows="3" class="form-control"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab-data">
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Brand Name</label>
+                    <div class="col-sm-4">
+                      <input type="text" placeholder="Shop/Brand Name" [(ngModel)]="shopName"
+                        [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Mobile</label>
+                    <div class="col-sm-10">
+                      <input type="number" placeholder="Enter Shop Mobile" [(ngModel)]="shopMobile"
+                        [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="email" placeholder="Enter Official Email" [(ngModel)]="shopEmail"
+                        [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Address</label>
+                    <div class="col-sm-10">
+                      <textarea type="text" placeholder="Enter Shop Address" [(ngModel)]="shopAddress"
+                        [ngModelOptions]="{standalone: true}" rows="3" class="form-control"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Shop Postal Code</label>
+                    <div class="col-sm-10">
+                      <input type="number" placeholder="Enter Shop Postal Code" [(ngModel)]="shopPostalCode"
+                        [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Pickup Address</label>
+                    <div class="col-sm-10">
+                      <textarea type="text" placeholder="Enter Product Pickup Address" [(ngModel)]="pickupAddress"
+                        [ngModelOptions]="{standalone: true}" rows="3" class="form-control"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Pickup Postal Code</label>
+                    <div class="col-sm-10">
+                      <input type="number" placeholder="Enter Product Pickup Location Postal Code"
+                        [(ngModel)]="pickupPostalCode" [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab-media">
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="email" placeholder="" class="form-control" [(ngModel)]="email"
+                        [ngModelOptions]="{standalone: true}" readonly>
+                    </div>
+                  </div>
+                  <div *ngIf="action === 1" class="form-group required {{passwordError}}">
+                    <label class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="text" placeholder="Enter Password" [(ngModel)]="password"
+                        [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab-commission">
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Commission (%)</label>
+                    <div class="col-sm-10">
+                      <input type="number" placeholder="Enter Your Commission" [(ngModel)]="commission"
+                        [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab-bank">
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Bank Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" placeholder="Enter Vendor Bank Name" [(ngModel)]="bankName"
+                        [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Bank IFSC Code</label>
+                    <div class="col-sm-10">
+                      <input type="text" placeholder="Enter Vendor Bank IFCS Code" [(ngModel)]="bankIFSC"
+                        [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Account No</label>
+                    <div class="col-sm-10">
+                      <input type="number" placeholder="Enter Acconut No" [(ngModel)]="accountNo"
+                        [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Account Type</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" [(ngModel)]="accountType" [ngModelOptions]="{standalone: true}">
+                        <option value="" disabled>--Select--</option>
+                        <option value="Current">Current</option>
+                        <option value="Saving">Saving</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

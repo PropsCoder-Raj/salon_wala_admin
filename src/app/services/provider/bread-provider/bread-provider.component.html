@@ -1,0 +1,357 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      <i class="fa fa-arrow-circle-o-left text-blue" aria-hidden="true" [routerLink]="['/services/providers']"></i>
+      <span *ngIf="action === 1">Create Service Provider</span>
+      <span *ngIf="action === 2">Update Service Provider</span>
+    </h1>
+    <div class="create-box">
+      <button type="button" class="btn btn-warning btn-md">
+        <b *ngIf="action === 1" (click)="createVendor()">Create Provider</b>
+        <b *ngIf="action === 2 && viewStatus === false" (click)="editVendor()">Update Provider</b>
+        <b *ngIf="action === 2 && viewStatus === true" [routerLink]="['/services/providers']">Close</b>
+      </button>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Provider Information</h3>
+          </div>
+          <div class="panel-body">
+            <form id="form-product" class="form-horizontal">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab-general" data-toggle="tab">Personal</a></li>
+                <li><a href="#tab-data" data-toggle="tab">Brand</a></li>
+                <li><a href="#tab-media" data-toggle="tab">Auth</a></li>
+                <li><a href="#tab-commission" data-toggle="tab">Commission</a></li>
+                <li><a href="#tab-bank" data-toggle="tab">Bank Details</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="tab-general">
+                  <div class="tab-content">
+                    <div>
+                      <div class="form-group required {{salutationError}}">
+                        <label class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-2">
+                          <select [disabled]="viewStatus == true" class="form-control" [(ngModel)]="salutation"
+                            [ngModelOptions]="{standalone: true}">
+                            <option value="">Select Salutation</option>
+                            <option value="Mr.">Mr.</option>
+                            <option value="Mrs.">Mrs.</option>
+                            <option value="Ms.">Ms.</option>
+                          </select>
+                        </div>
+                        <div class="col-sm-4">
+                          <input [disabled]="viewStatus == true" type="text" placeholder="First Name"
+                            [(ngModel)]="firstName" [ngModelOptions]="{standalone: true}" class="form-control">
+                        </div>
+                        <div class="col-sm-4">
+                          <input [disabled]="viewStatus == true" type="text" placeholder="Last Name"
+                            [(ngModel)]="lastName" [ngModelOptions]="{standalone: true}" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group required">
+                        <label class="col-sm-2 control-label">Mobile</label>
+                        <div class="col-sm-10">
+                          <input [disabled]="viewStatus == true" type="number" placeholder="Personal Mobile"
+                            [(ngModel)]="mobile" [ngModelOptions]="{standalone: true}" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group required">
+                        <label class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                          <input [disabled]="viewStatus == true" type="email" placeholder="Personal Email"
+                            [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group required">
+                        <label class="col-sm-2 control-label">Gender</label>
+                        <div class="col-sm-10">
+                          <label><input [disabled]="viewStatus == true" type="radio" value="Male" name="gender"
+                              [(ngModel)]="gender" [ngModelOptions]="{standalone: true}"> Male</label>&nbsp;
+                          <label><input [disabled]="viewStatus == true" type="radio" value="Female" name="gender"
+                              [(ngModel)]="gender" [ngModelOptions]="{standalone: true}"> Female</label>
+                        </div>
+                      </div>
+                      <div class="form-group required">
+                        <label class="col-sm-2 control-label">Date of Birth</label>
+                        <div class="col-sm-10">
+                          <input [disabled]="viewStatus == true" type="date" [(ngModel)]="dob"
+                            [ngModelOptions]="{standalone: true}" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group required">
+                        <label class="col-sm-2 control-label">Address</label>
+                        <div class="col-sm-10">
+                          <textarea [disabled]="viewStatus == true" type="text" placeholder="Enter Address"
+                            [(ngModel)]="address" [ngModelOptions]="{standalone: true}" rows="3"
+                            class="form-control"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab-data">
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Brand Name</label>
+                    <div class="col-sm-4">
+                      <input [disabled]="viewStatus == true" type="text" placeholder="Shop/Brand Name"
+                        [(ngModel)]="shopName" [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Mobile</label>
+                    <div class="col-sm-10">
+                      <input [disabled]="viewStatus == true" type="number" placeholder="Enter Shop Mobile"
+                        [(ngModel)]="shopMobile" [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                      <input [disabled]="viewStatus == true" type="email" placeholder="Enter Official Email"
+                        [(ngModel)]="shopEmail" [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Address</label>
+                    <div class="col-sm-10">
+                      <textarea [disabled]="viewStatus == true" type="text" placeholder="Enter Shop Address"
+                        [(ngModel)]="shopAddress" [ngModelOptions]="{standalone: true}" rows="3"
+                        class="form-control"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Shop Postal Code</label>
+                    <div class="col-sm-10">
+                      <input [disabled]="viewStatus == true" type="number" placeholder="Enter Shop Postal Code"
+                        [(ngModel)]="shopPostalCode" [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Latitude</label>
+                    <div class="col-sm-10">
+                      <input [disabled]="viewStatus == true" type="text" placeholder="Enter Shop Latitude"
+                        [(ngModel)]="latitude" [ngModelOptions]="{standalone: true}" rows="3" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Longitude</label>
+                    <div class="col-sm-10">
+                      <input [disabled]="viewStatus == true" type="text" placeholder="Enter Shop Longitude"
+                        [(ngModel)]="longitude" [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group {{usualTimeError}}">
+                    <label class="col-sm-2 control-label">Usual Time</label>
+                    <div class="col-sm-10">
+                      <input [disabled]="viewStatus == true" type="text" placeholder="Enter Usual Time"
+                        [(ngModel)]="usualTime" [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group {{mondayError}}">
+                    <label class="col-sm-2 control-label checkbox checkbox-primary">
+                      <input [disabled]="viewStatus == true" type="checkbox" [(ngModel)]="monday" [ngModelOptions]="{standalone: true}">
+                      <span>MONDAY</span>
+                      <span class="checkmark"></span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="monday" [(ngModel)]="timings[0].open"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Open Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!monday" placeholder="Enter Open Time(Day Wise)"
+                        disabled>
+                    </div>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="monday" [(ngModel)]="timings[0].close"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Close Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!monday" placeholder="Enter Close Time(Day Wise)"
+                        disabled>
+                    </div>
+                  </div>
+                  <div class="form-group {{tuesdayError}}">
+                    <label class="col-sm-2 control-label checkbox checkbox-primary">
+                      <input [disabled]="viewStatus == true" type="checkbox" [(ngModel)]="tuesday" [ngModelOptions]="{standalone: true}">
+                      <span>TUESDAY</span>
+                      <span class="checkmark"></span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="tuesday" [(ngModel)]="timings[1].open"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Open Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!tuesday" placeholder="Enter Open Time(Day Wise)"
+                        disabled>
+                    </div>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="tuesday" [(ngModel)]="timings[1].close"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Close Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!tuesday" placeholder="Enter Close Time(Day Wise)"
+                        disabled>
+                    </div>
+                  </div>
+                  <div class="form-group {{wednesdayError}}">
+                    <label class="col-sm-2 control-label checkbox checkbox-primary">
+                      <input [disabled]="viewStatus == true" type="checkbox" [(ngModel)]="wednesday" [ngModelOptions]="{standalone: true}">
+                      <span>WEDNESDAY</span>
+                      <span class="checkmark"></span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="wednesday" [(ngModel)]="timings[2].open"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Open Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!wednesday" placeholder="Enter Open Time(Day Wise)"
+                        disabled>
+                    </div>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="wednesday" [(ngModel)]="timings[2].close"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Close Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!wednesday"
+                        placeholder="Enter Close Time(Day Wise)" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group {{thursdayError}}">
+                    <label class="col-sm-2 control-label checkbox checkbox-primary">
+                      <input [disabled]="viewStatus == true" type="checkbox" [(ngModel)]="thursday" [ngModelOptions]="{standalone: true}">
+                      <span>THURSDAY</span>
+                      <span class="checkmark"></span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="thursday" [(ngModel)]="timings[3].open"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Open Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!thursday" placeholder="Enter Open Time(Day Wise)"
+                        disabled>
+                    </div>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="thursday" [(ngModel)]="timings[3].close"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Close Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!thursday" placeholder="Enter Close Time(Day Wise)"
+                        disabled>
+                    </div>
+                  </div>
+                  <div class="form-group {{fridayError}}">
+                    <label class="col-sm-2 control-label checkbox checkbox-primary">
+                      <input [disabled]="viewStatus == true" type="checkbox" [(ngModel)]="friday" [ngModelOptions]="{standalone: true}">
+                      <span>FRIDAY</span>
+                      <span class="checkmark"></span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="friday" [(ngModel)]="timings[4].open"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Open Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!friday" placeholder="Enter Open Time(Day Wise)"
+                        disabled>
+                    </div>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="friday" [(ngModel)]="timings[4].close"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Close Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!friday" placeholder="Enter Close Time(Day Wise)"
+                        disabled>
+                    </div>
+                  </div>
+                  <div class="form-group {{saturdayError}}">
+                    <label class="col-sm-2 control-label checkbox checkbox-primary">
+                      <input [disabled]="viewStatus == true" type="checkbox" [(ngModel)]="saturday" [ngModelOptions]="{standalone: true}">
+                      <span>SATURDAY</span>
+                      <span class="checkmark"></span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="saturday" [(ngModel)]="timings[5].open"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Open Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!saturday" placeholder="Enter Open Time(Day Wise)"
+                        disabled>
+                    </div>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="saturday" [(ngModel)]="timings[5].close"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Close Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!saturday" placeholder="Enter Close Time(Day Wise)"
+                        disabled>
+                    </div>
+                  </div>
+                  <div class="form-group {{sundayError}}">
+                    <label class="col-sm-2 control-label checkbox checkbox-primary">
+                      <input [disabled]="viewStatus == true" type="checkbox" [(ngModel)]="sunday" [ngModelOptions]="{standalone: true}">
+                      <span>SUNDAY</span>
+                      <span class="checkmark"></span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="sunday" [(ngModel)]="timings[6].open"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Open Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!sunday" placeholder="Enter Open Time(Day Wise)"
+                        disabled>
+                    </div>
+                    <div class="col-sm-5">
+                      <input [disabled]="viewStatus == true" type="time" class="form-control" *ngIf="sunday" [(ngModel)]="timings[6].close"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter Close Time(Day Wise)">
+                      <input type="time" class="form-control" *ngIf="!sunday" placeholder="Enter Close Time(Day Wise)"
+                        disabled>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab-media">
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                      <input [disabled]="viewStatus == true" type="email" placeholder="" class="form-control"
+                        [(ngModel)]="email" [ngModelOptions]="{standalone: true}" readonly>
+                    </div>
+                  </div>
+                  <div *ngIf="action == 1" class="form-group required {{passwordError}}">
+                    <label class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="text" placeholder="Enter Password" [(ngModel)]="password"
+                        [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab-commission">
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Commission (%)</label>
+                    <div class="col-sm-10">
+                      <input [disabled]="viewStatus == true" type="number" placeholder="Enter Your Commission"
+                        [(ngModel)]="commission" [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab-bank">
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Bank Name</label>
+                    <div class="col-sm-10">
+                      <input [disabled]="viewStatus == true" type="text" placeholder="Enter Vendor Bank Name"
+                        [(ngModel)]="bankName" [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Bank IFSC Code</label>
+                    <div class="col-sm-10">
+                      <input [disabled]="viewStatus == true" type="text" placeholder="Enter Vendor Bank IFCS Code"
+                        [(ngModel)]="bankIFSC" [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Account No</label>
+                    <div class="col-sm-10">
+                      <input [disabled]="viewStatus == true" type="number" placeholder="Enter Acconut No"
+                        [(ngModel)]="accountNo" [ngModelOptions]="{standalone: true}" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label">Account Type</label>
+                    <div class="col-sm-10">
+                      <select [disabled]="viewStatus == true" class="form-control" [(ngModel)]="accountType"
+                        [ngModelOptions]="{standalone: true}">
+                        <option value="" disabled>--Select--</option>
+                        <option value="Current">Current</option>
+                        <option value="Saving">Saving</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

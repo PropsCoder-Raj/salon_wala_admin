@@ -1,0 +1,73 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      <i class="fa fa-arrow-circle-o-left text-blue" aria-hidden="true" (click)="clearForm()"></i>
+      <span *ngIf="couponsStatus === 1">Create Coupons</span>
+      <span *ngIf="couponsStatus === 2">Update Coupons</span>
+    </h1>
+  </section>
+
+
+  <section class="content">
+    <div class="row" *ngIf="couponsStatus !== 0">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <b *ngIf="couponsStatus === 1">Create Coupons</b>
+              <b *ngIf="couponsStatus === 2">Update Coupons</b>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <form class="form-horizontal">
+              <div class="form-group required">
+                <label class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" placeholder="Name" class="form-control" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="form-group required">
+                <label class="col-sm-2 control-label">Code</label>
+                <div class="col-sm-10">
+                  <input type="text" placeholder="Code" class="form-control" [(ngModel)]="code" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="form-group required">
+                <label class="col-sm-2 control-label">Status</label>
+                <div class="col-sm-10">
+                  <select class="form-control" [(ngModel)]="status" [ngModelOptions]="{standalone: true}">
+                    <option value="1">Enabled</option>
+                    <option value="0">Disabled</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group required">
+                <label class="col-sm-2 control-label">Discount (%)</label>
+                <div class="col-sm-10">
+                  <input type="number" placeholder="Discount" class="form-control" [(ngModel)]="discount" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="form-group required">
+                <label class="col-sm-2 control-label">Amount Limit</label>
+                <div class="col-sm-10">
+                  <input type="number" placeholder="Amount Limit" class="form-control" [(ngModel)]="amountLimit" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div>
+                <div class="pull-right">
+                  <button class="btn bg-white" (click)="clearForm()">
+                    <b>Close</b>
+                  </button>&nbsp;&nbsp;
+                  <button class="btn btn-warning" (click)="submit()">
+                    <b *ngIf="couponsStatus === 1">Create Coupons</b>
+                    <b *ngIf="couponsStatus === 2">Update Coupons</b>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
